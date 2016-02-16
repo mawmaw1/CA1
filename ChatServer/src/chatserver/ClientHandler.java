@@ -23,6 +23,9 @@ public class ClientHandler extends Thread {
     PrintWriter writer;
     Socket socket;
     ChatServer server;
+    String clientName;
+   
+
 
     public ClientHandler(Socket socket, ChatServer server) throws IOException {
 
@@ -30,33 +33,56 @@ public class ClientHandler extends Thread {
         writer = new PrintWriter(socket.getOutputStream(), true);
         this.socket = socket;
         this.server = server;
+        
 
     }
 
     @Override
     public void run() {
-        
-        writer.println("Please enter USER# and a name");
-        String message = input.nextLine(); //IMPORTANT blocking call
-        Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message));
-        System.out.println(String.format("Received the message: %1$S ", message));
-        boolean enterName = false;
-        
 
-        
-        while(!enterName && !message.contains(ProtocolStrings.USER)){
+        writer.println("Please enter something");
+        String message=""; //= input.nextLine(); //IMPORTANT blocking call
+        boolean enterName = false;
+
+        while (!enterName) {
             writer.println("Please enter USER# and a name");
             Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message.toUpperCase()));
             System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));
             message = input.nextLine(); //IMPORTANT blocking call
-            if(message.contains(ProtocolStrings.USER)){
+            String[] parts = message.split("#");
+            
+            if (parts[0].equals("USER")) {
                 enterName = true;
+                clientName = parts[1];
+                System.out.println("Welcome " + clientName);
+                server.addHandler(this);
             }
         }
-        
-        
+
         while (!message.equals(ProtocolStrings.LOGOUT)) {
-            writer.println(message.toUpperCase());
+
+            if (message.contains(ProtocolStrings.SEND)) {
+
+                server.send(message);
+
+            }
+
+            Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message.toUpperCase()));
+            System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));
+            message = input.nextLine(); //IMPORTANT blocking call
+        }
+
+        Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message));
+        System.out.println(String.format("Received the message: %1$S ", message));
+
+        while (!message.equals(ProtocolStrings.LOGOUT)) {
+
+            if (message.substring(0, 4).equals("SEND#")) {
+
+                server.send(message.substring(5));
+
+            }
+
             Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message.toUpperCase()));
             System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));
             message = input.nextLine(); //IMPORTANT blocking call
@@ -71,13 +97,20 @@ public class ClientHandler extends Thread {
 
         Logger.getLogger(Log.LOG_NAME).log(Level.INFO, ("Closed a Connection"));
         System.out.println("Closed a Connection");
-        
-        
 
     }
-    
-       public void send(String message){
+
+    public void send(String message) {
         writer.println(message);
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    @Override
+    public String toString() {
+        return clientName;
     }
 
 }

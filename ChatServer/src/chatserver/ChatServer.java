@@ -24,7 +24,7 @@ import shared.ProtocolStrings;
  */
 public class ChatServer {
 
-    private HashMap<ClientHandler, Integer> map = new HashMap();
+    private HashMap<String, ClientHandler> map = new HashMap();
 
     private static boolean keepRunning = true;
     private static ServerSocket serverSocket;
@@ -61,9 +61,9 @@ public class ChatServer {
                     public void run() {
                         try {
                             ClientHandler handler = new ClientHandler(socket, ChatServer.this);
-                            map.put(handler, value);
-                            value++;
+
                             handler.start();
+                            sendCurrentList();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -81,10 +81,29 @@ public class ChatServer {
         map.remove(h);
     }
 
-    public void send(String message) {
-        for (ClientHandler ch : map.keySet()) {
-            ch.send(message);
+    public void addHandler(ClientHandler h) {
+        map.put(h.getClientName(), h);
+    }
+
+    public void sendCurrentList() {
+        for (ClientHandler ch : map.values()) {
+            ch.send(map.keySet().toString());
         }
+    }
+
+    public void send(String message) {
+
+        for (ClientHandler ch : map.values()) {
+            if (message.contains(ch.getClientName())) {
+                ch.send(message);
+            }
+        }
+        if (message.charAt(5) == '*') {
+            for (ClientHandler ch : map.values()) {
+                ch.send(message.substring(6));
+            }
+        }
+
     }
 
     public static void main(String[] args) throws IOException {

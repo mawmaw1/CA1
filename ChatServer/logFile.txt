@@ -1,10 +1,6 @@
-feb. 16, 2016 10:32:04 AM chatserver.ChatServer runServer
+feb. 16, 2016 10:48:02 AM chatserver.ChatServer runServer
 INFO: Server started. Listening on: 9999, bound to: localhost
-feb. 16, 2016 10:32:18 AM chatserver.ClientHandler run
-INFO: Received the message: BALLS 
-feb. 16, 2016 10:32:18 AM chatserver.ClientHandler run
-INFO: Received the message: BALLS 
-feb. 16, 2016 10:32:32 AM chatserver.ClientHandler run
-INFO: Received the message: KJKBJK 
-feb. 16, 2016 10:32:33 AM chatserver.ClientHandler run
-INFO: Received the message: ADDAWDAW 
+feb. 16, 2016 10:48:20 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#BALLS 
+feb. 16, 2016 10:48:23 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#AWDDWAADW 

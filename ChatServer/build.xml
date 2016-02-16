@@ -70,4 +70,12 @@
     nbproject/build-impl.xml file. 
 
     -->
+    
+      <target name="-post-compile">
+    <copy file="startserver.bat" todir="${dist.dir}"/>
+    <copy file="startclient.bat" todir="${dist.dir}"/> 
+    <copy file="cmd.bat" todir="${dist.dir}"/> 
+  </target>
+    
+    
 </project>
