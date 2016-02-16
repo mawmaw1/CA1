@@ -10,6 +10,9 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,34 +24,16 @@ import shared.ProtocolStrings;
  */
 public class ChatServer {
 
+    private HashMap<ClientHandler, Integer> map = new HashMap();
+
     private static boolean keepRunning = true;
     private static ServerSocket serverSocket;
     private String ip;
     private int port;
+    private int value = 1;
 
     public static void stopServer() {
         keepRunning = false;
-    }
-
-    private static void handleClient(Socket socket) throws IOException {
-        Scanner input = new Scanner(socket.getInputStream());
-        PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
-
-        String message = input.nextLine(); //IMPORTANT blocking call
-        Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message));
-        System.out.println(String.format("Received the message: %1$S ", message));
-
-        while (!message.equals(ProtocolStrings.STOP)) {
-            writer.println(message.toUpperCase());
-            Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message.toUpperCase()));
-            System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));
-            message = input.nextLine(); //IMPORTANT blocking call
-        }
-        writer.println(ProtocolStrings.STOP);//Echo the stop message back to the client for a nice closedown
-        socket.close();
-
-        Logger.getLogger(Log.LOG_NAME).log(Level.INFO, ("Closed a Connection"));
-        System.out.println("Closed a Connection");
     }
 
     private void runServer(String ip, int port) throws IOException {
@@ -75,7 +60,10 @@ public class ChatServer {
                 new Thread(new Runnable() {
                     public void run() {
                         try {
-                            handleClient(socket);
+                            ClientHandler handler = new ClientHandler(socket, ChatServer.this);
+                            map.put(handler, value);
+                            value++;
+                            handler.start();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -87,6 +75,16 @@ public class ChatServer {
             System.exit(1);
         }
 
+    }
+
+    public void removeHandler(ClientHandler h) {
+        map.remove(h);
+    }
+
+    public void send(String message) {
+        for (ClientHandler ch : map.keySet()) {
+            ch.send(message);
+        }
     }
 
     public static void main(String[] args) throws IOException {
