@@ -24,14 +24,14 @@ public class ServerTest {
     public ServerTest() {
     }
     
+    
     @BeforeClass
-    public static void setUpClass() {
-        String[] arg = {"localhost", "9999"};
-        new Thread(new Runnable() {
+    public static void setUpClass(){
+        new Thread(new Runnable(){
             @Override
             public void run() {
                 try {
-                    ChatServer.main(arg);
+                    ChatServer.main(null);
                 } catch (IOException ex) {
                     Logger.getLogger(ServerTest.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -40,10 +40,10 @@ public class ServerTest {
     }
     
     @AfterClass
-    public static void tearDownClass() {
+    public static void tearDownClass(){
         ChatServer.stopServer();
     }
-    
+
     @Before
     public void setUp() {
     }
