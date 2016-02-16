@@ -44,7 +44,7 @@ public class ClientHandler extends Thread {
         
 
         
-        while(!enterName && !message.contains(ProtocolStrings.USER)){
+        while((!enterName) || (!message.contains(ProtocolStrings.USER))){
             writer.println("Please enter USER# and a name");
             Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message.toUpperCase()));
             System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));

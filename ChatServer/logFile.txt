@@ -1,10 +1,16 @@
-feb. 16, 2016 10:32:04 AM chatserver.ChatServer runServer
+feb. 16, 2016 10:47:05 AM chatserver.ChatServer runServer
 INFO: Server started. Listening on: 9999, bound to: localhost
-feb. 16, 2016 10:32:18 AM chatserver.ClientHandler run
-INFO: Received the message: BALLS 
-feb. 16, 2016 10:32:18 AM chatserver.ClientHandler run
-INFO: Received the message: BALLS 
-feb. 16, 2016 10:32:32 AM chatserver.ClientHandler run
-INFO: Received the message: KJKBJK 
-feb. 16, 2016 10:32:33 AM chatserver.ClientHandler run
-INFO: Received the message: ADDAWDAW 
+feb. 16, 2016 10:47:26 AM chatserver.ClientHandler run
+INFO: Received the message: USER# 
+feb. 16, 2016 10:47:26 AM chatserver.ClientHandler run
+INFO: Received the message: USER# 
+feb. 16, 2016 10:47:32 AM chatserver.ClientHandler run
+INFO: Received the message: CHRIS 
+feb. 16, 2016 10:47:39 AM chatserver.ClientHandler run
+INFO: Received the message: USER# CHRIS 
+feb. 16, 2016 10:47:42 AM chatserver.ClientHandler run
+INFO: Received the message: DGS 
+feb. 16, 2016 10:47:44 AM chatserver.ClientHandler run
+INFO: Received the message: FASF 
+feb. 16, 2016 10:47:52 AM chatserver.ClientHandler run
+INFO: Closed a Connection
