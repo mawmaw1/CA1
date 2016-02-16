@@ -63,7 +63,7 @@ public class ChatServer {
             serverSocket.bind(new InetSocketAddress(port));
             System.out.println("Server started, listening on port: " + port);
         } catch (IOException e) {
-            System.err.println("Could not listen on port: 8087");
+            System.err.println("Could not listen on port: 9999");
             System.exit(1);
         }
 
@@ -93,8 +93,8 @@ public class ChatServer {
 
         try {
             Log.setLogFile("logFile.txt", "ServerLog");
-            String ip = args[0];
-            int port = Integer.parseInt(args[1]);
+            int port = Integer.parseInt(args[0]);
+            String ip = args[1];            
             new ChatServer().runServer(ip, port);
         } finally {
             Log.closeLogger();
