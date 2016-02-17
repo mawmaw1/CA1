@@ -41,7 +41,7 @@ public class ChatServer {
         this.ip = ip;
         
         Logger.getLogger(Log.LOG_NAME).log(Level.INFO, ("Server started. Listening on: " + port + ", bound to: " + ip));
-        System.out.println("Server started. Listening on: " + port + ", bound to: " + ip);
+        
         
         try {
             serverSocket = new ServerSocket();
@@ -90,7 +90,7 @@ public class ChatServer {
     
     public void sendCurrentList() {
         for (ClientHandler ch : map.values()) {
-            ch.send(map.keySet().toString());
+            ch.send("USERS#" + map.keySet().toString());
         }
     }
     

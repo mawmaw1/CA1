@@ -43,9 +43,9 @@ public class ClientHandler extends Thread {
         boolean enterName = false;
 
         while (!enterName) {
-            writer.println("Please enter USER# and a name");
+            
             Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message));
-            //System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));
+            
 
             message = input.nextLine(); //IMPORTANT blocking call
             String[] parts = message.split("#");
@@ -53,13 +53,13 @@ public class ClientHandler extends Thread {
             if (parts[0].equals("USER")) {
                 enterName = true;
                 clientName = parts[1];
-                writer.println("Welcome " + clientName);
+                
                 server.addHandler(this);
                 
             }
 
         }
-        writer.println("Start sending messages!");
+        
 
         boolean logout = false;
 
@@ -76,7 +76,7 @@ public class ClientHandler extends Thread {
             }
 
             Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message));
-            //        System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));
+            
 
         }
 
@@ -91,7 +91,7 @@ public class ClientHandler extends Thread {
         }
 
         Logger.getLogger(Log.LOG_NAME).log(Level.INFO, ("Closed a Connection"));
-        System.out.println("Closed a Connection");
+        
         } catch (Exception e){
             try {
                 socket.close();
