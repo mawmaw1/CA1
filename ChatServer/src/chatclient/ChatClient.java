@@ -47,9 +47,9 @@ public class ChatClient extends Thread{
     }
 
     public String receive() {
-        System.out.println("client test1");
+
         String msg = input.nextLine();
-        System.out.println("client test2");
+
         if (msg.equals(ProtocolStrings.LOGOUT)) {
             try {
                 socket.close();
@@ -57,7 +57,6 @@ public class ChatClient extends Thread{
                 Logger.getLogger(ChatObserver.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println("client test3");
         return msg;
 
     }
@@ -73,7 +72,6 @@ public class ChatClient extends Thread{
         while (true) {
             try {
                 notifyObservers(receive());
-                System.out.println("yolololololo");
                 System.in.read();
             } catch (UnknownHostException ex) {
                 Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);

@@ -155,7 +155,7 @@ public class ChatGUI extends javax.swing.JFrame implements ChatObserver {
     @Override
     public void RecieveMessageReady(String recieveMsg) {
 
-        if (recieveMsg.contains("USER#")) {
+        if (recieveMsg.contains("USER")) {
 
             jTextArea2.setText(recieveMsg);
             
