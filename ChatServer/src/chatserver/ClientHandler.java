@@ -24,8 +24,6 @@ public class ClientHandler extends Thread {
     Socket socket;
     ChatServer server;
     String clientName;
-   
-
 
     public ClientHandler(Socket socket, ChatServer server) throws IOException {
 
@@ -33,61 +31,58 @@ public class ClientHandler extends Thread {
         writer = new PrintWriter(socket.getOutputStream(), true);
         this.socket = socket;
         this.server = server;
-        
 
     }
 
     @Override
     public void run() {
-
-        writer.println("Please enter something");
-        String message=""; //= input.nextLine(); //IMPORTANT blocking call
+        try{
+            
+        
+        String message = ""; //= input.nextLine(); //IMPORTANT blocking call
         boolean enterName = false;
 
         while (!enterName) {
             writer.println("Please enter USER# and a name");
-            Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message.toUpperCase()));
-            System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));
+            Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message));
+            //System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));
+
             message = input.nextLine(); //IMPORTANT blocking call
             String[] parts = message.split("#");
-            
+
             if (parts[0].equals("USER")) {
                 enterName = true;
                 clientName = parts[1];
-                System.out.println("Welcome " + clientName);
+                writer.println("Welcome " + clientName);
                 server.addHandler(this);
+                
             }
+
         }
+        writer.println("Start sending messages!");
 
-        while (!message.equals(ProtocolStrings.LOGOUT)) {
+        boolean logout = false;
 
-            if (message.contains(ProtocolStrings.SEND)) {
+        while (!logout) {
+            message = input.nextLine(); //IMPORTANT blocking call
+            String[] parts = message.split("#");
+            if (parts[0].equals(ProtocolStrings.SEND)) {
 
-                server.send(message);
+                server.send(message, clientName);
 
             }
+            if (parts[0].equals(ProtocolStrings.LOGOUT)) {
+                logout = true;
+            }
 
-            Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message.toUpperCase()));
-            System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));
-            message = input.nextLine(); //IMPORTANT blocking call
+            Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message));
+            //        System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));
+
         }
 
         Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message));
-        System.out.println(String.format("Received the message: %1$S ", message));
-
-        while (!message.equals(ProtocolStrings.LOGOUT)) {
-
-            if (message.substring(0, 4).equals("SEND#")) {
-
-                server.send(message.substring(5));
-
-            }
-
-            Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message.toUpperCase()));
-            System.out.println(String.format("Received the message: %1$S ", message.toUpperCase()));
-            message = input.nextLine(); //IMPORTANT blocking call
-        }
         writer.println(ProtocolStrings.LOGOUT);//Echo the stop message back to the client for a nice closedown
+
         try {
             socket.close();
             server.removeHandler(this);
@@ -97,7 +92,14 @@ public class ClientHandler extends Thread {
 
         Logger.getLogger(Log.LOG_NAME).log(Level.INFO, ("Closed a Connection"));
         System.out.println("Closed a Connection");
-
+        } catch (Exception e){
+            try {
+                socket.close();
+                server.removeHandler(this);
+            } catch (IOException ex) {
+                Logger.getLogger(Log.LOG_NAME).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public void send(String message) {

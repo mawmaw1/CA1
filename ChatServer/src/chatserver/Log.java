@@ -24,7 +24,8 @@ public class Log {
         try {
             LOG_NAME = logName;
             Logger logger = Logger.getLogger(LOG_NAME);
-            FileHandler fileTxt = new FileHandler(logFile);
+            
+            FileHandler fileTxt = new FileHandler(logFile, true);
             fileTxt.setFormatter(new java.util.logging.SimpleFormatter());
             logger.addHandler(fileTxt);
         } catch (IOException | SecurityException ex) {
