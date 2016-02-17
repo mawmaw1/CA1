@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import chatclient.ChatClient;
 import chatserver.ChatServer;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -24,14 +25,14 @@ public class ServerTest {
     public ServerTest() {
     }
     
+    
     @BeforeClass
-    public static void setUpClass() {
-        String[] arg = {"localhost", "9999"};
-        new Thread(new Runnable() {
+    public static void setUpClass(){
+        new Thread(new Runnable(){
             @Override
             public void run() {
                 try {
-                    ChatServer.main(arg);
+                    ChatServer.main(null);
                 } catch (IOException ex) {
                     Logger.getLogger(ServerTest.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -40,21 +41,15 @@ public class ServerTest {
     }
     
     @AfterClass
-    public static void tearDownClass() {
+    public static void tearDownClass(){
         ChatServer.stopServer();
     }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void send() throws IOException {
+        ChatClient client = new ChatClient();
+        client.connect("localhost", 9999);
+        client.send("Hello");
+        assertEquals("HELLO", client.receive());
+    }
 }

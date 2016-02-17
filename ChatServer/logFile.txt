@@ -14,3 +14,9 @@ feb. 16, 2016 10:47:44 AM chatserver.ClientHandler run
 INFO: Received the message: FASF 
 feb. 16, 2016 10:47:52 AM chatserver.ClientHandler run
 INFO: Closed a Connection
+Feb 17, 2016 12:44:45 PM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 17, 2016 1:26:57 PM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 17, 2016 1:27:12 PM chatserver.ClientHandler run
+INFO: Received the message:  
