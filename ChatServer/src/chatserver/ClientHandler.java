@@ -81,7 +81,7 @@ public class ClientHandler extends Thread {
         }
 
         Logger.getLogger(Log.LOG_NAME).log(Level.INFO, String.format("Received the message: %1$S ", message));
-        writer.println(ProtocolStrings.LOGOUT);//Echo the stop message back to the client for a nice closedown
+        
 
         try {
             socket.close();

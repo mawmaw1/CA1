@@ -43,21 +43,34 @@ public class ChatClient extends Thread {
     }
 
     public void send(String msg) {
+        
         output.println(msg);
     }
 
-    public String receive() {
+    public void receive() {
 
         String msg = input.nextLine();
+        
+        String[] parts = msg.split("#");
 
-        if (msg.equals(ProtocolStrings.LOGOUT)) {
+        if (parts[0].equals(ProtocolStrings.LOGOUT)) {
             try {
                 socket.close();
             } catch (IOException ex) {
                 Logger.getLogger(ChatObserver.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return msg;
+        if(parts[0].equals((ProtocolStrings.USERS))){
+            String[] users = parts[1].split(",");
+            
+            notifyObserversUsers(users);
+        }
+        if(parts[0].equals((ProtocolStrings.MESSAGE))){
+            
+            notifyObservers(parts[1] + " says: " + parts[2]);
+        }
+        
+        
 
     }
 
@@ -66,18 +79,25 @@ public class ChatClient extends Thread {
             observer.RecieveMessageReady(res);
         }
     }
+    
+        public void notifyObserversUsers(String[] users ) {
+        for (ChatObserver observer : observers) {
+            observer.RecieveUsers(users);
+        }
+    }
 
     @Override
     public void run() {
+        try {
+            connect("localhost", port);
+        } catch (IOException ex) {
+            Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         while (true) {
-            try {
-                notifyObservers(receive());
-                System.in.read();
-            } catch (UnknownHostException ex) {
-                Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
-            }
+          receive();
+            
+            
         }
 
     }

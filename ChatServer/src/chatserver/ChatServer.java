@@ -89,9 +89,12 @@ public class ChatServer {
     }
     
     public void sendCurrentList() {
+               
         for (ClientHandler ch : map.values()) {
-            ch.send("USERS#" + map.keySet().toString());
+            
+            ch.send("USERS#" + map.keySet().toString().replaceAll("[\\s\\[\\]]",""));
         }
+        
     }
     
     public void send(String message, String senderName) {
