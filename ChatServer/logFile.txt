@@ -20,3 +20,37 @@ Feb 17, 2016 1:26:57 PM chatserver.ChatServer runServer
 INFO: Server started. Listening on: 9999, bound to: localhost
 Feb 17, 2016 1:27:12 PM chatserver.ClientHandler run
 INFO: Received the message:  
+Feb 17, 2016 1:44:27 PM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 17, 2016 1:44:36 PM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 17, 2016 1:44:36 PM chatserver.ClientHandler run
+INFO: Received the message: SDF 
+Feb 17, 2016 1:44:37 PM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 17, 2016 1:44:37 PM chatserver.ClientHandler run
+INFO: Received the message: SDF 
+Feb 17, 2016 1:44:38 PM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 17, 2016 1:44:38 PM chatserver.ClientHandler run
+INFO: Received the message: SDFFF 
+Feb 17, 2016 1:45:09 PM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 17, 2016 1:45:19 PM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 17, 2016 1:45:21 PM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 17, 2016 1:45:22 PM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 17, 2016 1:45:22 PM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 17, 2016 1:45:22 PM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 17, 2016 1:45:22 PM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 17, 2016 2:04:33 PM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 17, 2016 2:04:44 PM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 17, 2016 2:04:48 PM chatserver.ClientHandler run
+INFO: Received the message:  
