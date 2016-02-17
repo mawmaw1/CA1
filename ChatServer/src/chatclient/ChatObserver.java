@@ -11,4 +11,6 @@ package chatclient;
  */
 public interface ChatObserver {
     void RecieveMessageReady(String recieveMsg);
+//    void RecieveUsers(String[] recieveUsers);
+    
 }

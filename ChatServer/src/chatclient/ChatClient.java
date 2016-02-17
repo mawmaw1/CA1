@@ -21,8 +21,8 @@ import shared.ProtocolStrings;
  *
  * @author ingim
  */
-public class ChatClient extends Thread{
-    
+public class ChatClient extends Thread {
+
     Socket socket;
     private int port = 9999;
     private InetAddress serverAddress;
