@@ -43,14 +43,14 @@ public class ChatClient extends Thread {
     }
 
     public void send(String msg) {
-        
+
         output.println(msg);
     }
 
     public void receive() {
 
         String msg = input.nextLine();
-        
+        System.out.println(msg);
         String[] parts = msg.split("#");
 
         if (parts[0].equals(ProtocolStrings.LOGOUT)) {
@@ -60,17 +60,15 @@ public class ChatClient extends Thread {
                 Logger.getLogger(ChatObserver.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if(parts[0].equals((ProtocolStrings.USERS))){
+        if (parts[0].equals((ProtocolStrings.USERS))) {
             String[] users = parts[1].split(",");
-            
+
             notifyObserversUsers(users);
         }
-        if(parts[0].equals((ProtocolStrings.MESSAGE))){
-            
+        if (parts[0].equals((ProtocolStrings.MESSAGE))) {
+
             notifyObservers(parts[1] + " says: " + parts[2]);
         }
-        
-        
 
     }
 
@@ -79,8 +77,8 @@ public class ChatClient extends Thread {
             observer.RecieveMessageReady(res);
         }
     }
-    
-        public void notifyObserversUsers(String[] users ) {
+
+    public void notifyObserversUsers(String[] users) {
         for (ChatObserver observer : observers) {
             observer.RecieveUsers(users);
         }
@@ -93,11 +91,10 @@ public class ChatClient extends Thread {
         } catch (IOException ex) {
             Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         while (true) {
-          receive();
-            
-            
+            receive();
+
         }
 
     }
