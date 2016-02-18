@@ -25,17 +25,20 @@ public class ChatGUI extends javax.swing.JFrame implements ChatObserver {
      */
     ChatClient client = new ChatClient();
     JFrame frame = new JFrame("InputDialog Example #1");
-    
-    
-    
-    public ChatGUI() {
-        initComponents();
-        jListUsers.setModel(usersModel);
-        jListMessage.setModel(messageModel);
+
+    public final void starter() {
         client.addChatObserver(this);
         client.start();
         String name = JOptionPane.showInputDialog(frame, "Enter your username");
         client.send("USER#" + name);
+        this.setTitle("Logged on as: " + name);
+    }
+
+    public ChatGUI() {
+        initComponents();
+        jListUsers.setModel(usersModel);
+        jListMessage.setModel(messageModel);
+        starter();
     }
 
     public static DefaultListModel messageModel = new DefaultListModel();
@@ -182,12 +185,15 @@ public class ChatGUI extends javax.swing.JFrame implements ChatObserver {
 
     @Override
     public void RecieveUsers(String[] recieveUsers) {
-
+        
         usersModel.removeAllElements();
-
-        for (int i = 0; i < recieveUsers.length; i++) {
-            usersModel.addElement(recieveUsers[i]);
+        
+        for (String s : recieveUsers) {
+            usersModel.addElement(s);          
         }
 
+//        for (int i = 0; i < recieveUsers.length; i++) {
+//            usersModel.addElement(recieveUsers[i]);
+//        }
     }
 }
