@@ -41,8 +41,8 @@ public class ChatGUI extends javax.swing.JFrame implements ChatObserver {
         starter();
     }
 
-    public static DefaultListModel messageModel = new DefaultListModel();
-    public static DefaultListModel usersModel = new DefaultListModel();
+      DefaultListModel messageModel = new DefaultListModel();
+      DefaultListModel usersModel = new DefaultListModel();
 
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always
