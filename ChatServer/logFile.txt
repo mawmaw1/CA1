@@ -54,3 +54,85 @@ Feb 17, 2016 2:04:44 PM chatserver.ClientHandler run
 INFO: Received the message:  
 Feb 17, 2016 2:04:48 PM chatserver.ClientHandler run
 INFO: Received the message:  
+Feb 18, 2016 10:27:53 AM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 18, 2016 10:27:56 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 10:28:39 AM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 18, 2016 10:28:42 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 10:28:54 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#*#HEY 
+Feb 18, 2016 10:29:47 AM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 18, 2016 10:29:50 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 10:31:20 AM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 18, 2016 10:31:23 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 10:31:25 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#*#USER#INGI 
+Feb 18, 2016 10:31:32 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#*#SEND#*#HEY 
+Feb 18, 2016 10:31:33 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#*#SEND#*#HEY 
+Feb 18, 2016 10:31:33 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#*#SEND#*#HEY 
+Feb 18, 2016 10:37:54 AM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 18, 2016 10:37:57 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 10:38:07 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#*#HEY 
+Feb 18, 2016 10:42:08 AM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 18, 2016 10:42:14 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 10:42:20 AM chatserver.ClientHandler run
+INFO: Received the message: USER#*#HEY 
+Feb 18, 2016 10:42:22 AM chatserver.ClientHandler run
+INFO: Received the message: USER#*#HEY 
+Feb 18, 2016 10:42:23 AM chatserver.ClientHandler run
+INFO: Received the message: USER#*#HEY 
+Feb 18, 2016 10:43:35 AM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 18, 2016 10:43:38 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 10:43:44 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#*#HEY 
+Feb 18, 2016 10:55:25 AM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 18, 2016 10:55:28 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 10:55:32 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 10:55:39 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#*#HEY 
+Feb 18, 2016 10:55:46 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#*#WHAT UP 
+Feb 18, 2016 10:55:56 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 10:56:01 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#*#HEY 
+Feb 18, 2016 11:11:34 AM chatserver.ChatServer runServer
+INFO: Server started. Listening on: 9999, bound to: localhost
+Feb 18, 2016 11:11:38 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 11:11:43 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 11:11:49 AM chatserver.ClientHandler run
+INFO: Received the message:  
+Feb 18, 2016 11:11:57 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#*#HEY 
+Feb 18, 2016 11:12:03 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#INGI#HEY 
+Feb 18, 2016 11:12:13 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#1234,INGI#HEY 
+Feb 18, 2016 11:12:17 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#IUSHDF,INGI#HEY 
+Feb 18, 2016 11:12:33 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#IUSHDF,1234,INGI#FUCK FACE 
+Feb 18, 2016 11:12:38 AM chatserver.ClientHandler run
+INFO: Received the message: SEND#IUSHDF,INGI#FUCK FACE 

@@ -6,11 +6,13 @@
 package chatclient;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -117,8 +119,12 @@ public class ChatGUI extends javax.swing.JFrame implements ChatObserver {
 //            Logger.getLogger(ChatGUI.class.getName()).log(Level.SEVERE, null, ex);
 //        }
         String text = jTextField1.getText();
-        client.send(text);
-
+        List<String> selectedValuesList = jListUsers.getSelectedValuesList();
+        if(!(selectedValuesList.isEmpty())){
+            client.send("SEND#" + selectedValuesList.toString().replaceAll("[\\s\\[\\]]","") + "#" + text);
+        }else{
+            client.send("SEND#*#"+ text);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
