@@ -86,11 +86,7 @@ public class ChatClient extends Thread {
 
     @Override
     public void run() {
-        try {
-            connect("localhost", port);
-        } catch (IOException ex) {
-            Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
 
         while (true) {
             receive();

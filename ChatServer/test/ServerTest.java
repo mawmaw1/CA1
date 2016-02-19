@@ -5,6 +5,7 @@
  */
 
 import chatclient.ChatClient;
+import chatclient.ChatObserver;
 import chatserver.ChatServer;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -20,7 +21,7 @@ import static org.junit.Assert.*;
  *
  * @author ingim
  */
-public class ServerTest {
+public class ServerTest  implements ChatObserver{
     
     public ServerTest() {
     }
@@ -28,17 +29,34 @@ public class ServerTest {
     
     @BeforeClass
     public static void setUpClass(){
+        String[] arr = {"localhost","9999"};
         new Thread(new Runnable(){
             @Override
             public void run() {
                 try {
-                    ChatServer.main(null);
+                    ChatServer.main(arr);
                 } catch (IOException ex) {
                     Logger.getLogger(ServerTest.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }).start();
     }
+    
+    
+    @Test
+    public void newClient() throws IOException{
+        ChatClient client = new ChatClient();
+        client.connect("localhost", 9999);
+        client.addChatObserver(this);
+        client.start();
+        
+        client.send("USER#Magnus");
+        client.send("SEND#*#Hey");
+        client.send("LOGOUT#");
+        
+    }
+    
+    
     
     @AfterClass
     public static void tearDownClass(){
@@ -47,9 +65,21 @@ public class ServerTest {
 
     @Test
     public void send() throws IOException {
-        ChatClient client = new ChatClient();
-        client.connect("localhost", 9999);
-        client.send("Hello");
+        
+        
+       // client.send("Hello");
       //  assertEquals("HELLO", client.receive());
+    }
+
+    @Override
+    public void RecieveMessageReady(String recieveMsg) {
+        System.out.println(recieveMsg);
+    }
+
+    @Override
+    public void RecieveUsers(String[] recieveUsers) {
+        for(int i =0;i<recieveUsers.length;i++){
+            System.out.println(recieveUsers[i]);
+        }
     }
 }

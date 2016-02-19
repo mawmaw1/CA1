@@ -25,10 +25,18 @@ public class ChatGUI extends javax.swing.JFrame implements ChatObserver {
      */
     ChatClient client = new ChatClient();
     JFrame frame = new JFrame("InputDialog Example #1");
+    public static String ip;
+    public static int port;
 
     public final void starter() {
         client.addChatObserver(this);
+        try {
+            client.connect(ip, port);
+        } catch (IOException ex) {
+            Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
         client.start();
+
         String name = JOptionPane.showInputDialog(frame, "Enter your username");
         client.send("USER#" + name);
         this.setTitle("Logged on as: " + name);
@@ -41,8 +49,8 @@ public class ChatGUI extends javax.swing.JFrame implements ChatObserver {
         starter();
     }
 
-      DefaultListModel messageModel = new DefaultListModel();
-      DefaultListModel usersModel = new DefaultListModel();
+    DefaultListModel messageModel = new DefaultListModel();
+    DefaultListModel usersModel = new DefaultListModel();
 
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always
@@ -123,10 +131,10 @@ public class ChatGUI extends javax.swing.JFrame implements ChatObserver {
 //        }
         String text = jTextField1.getText();
         List<String> selectedValuesList = jListUsers.getSelectedValuesList();
-        if(!(selectedValuesList.isEmpty())){
-            client.send("SEND#" + selectedValuesList.toString().replaceAll("[\\s\\[\\]]","") + "#" + text);
-        }else{
-            client.send("SEND#*#"+ text);
+        if (!(selectedValuesList.isEmpty())) {
+            client.send("SEND#" + selectedValuesList.toString().replaceAll("[\\s\\[\\]]", "") + "#" + text);
+        } else {
+            client.send("SEND#*#" + text);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -134,7 +142,8 @@ public class ChatGUI extends javax.swing.JFrame implements ChatObserver {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-
+        ip = args[0];
+        port = Integer.parseInt(args[1]);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -185,11 +194,11 @@ public class ChatGUI extends javax.swing.JFrame implements ChatObserver {
 
     @Override
     public void RecieveUsers(String[] recieveUsers) {
-        
+
         usersModel.removeAllElements();
-        
+
         for (String s : recieveUsers) {
-            usersModel.addElement(s);          
+            usersModel.addElement(s);
         }
 
 //        for (int i = 0; i < recieveUsers.length; i++) {
