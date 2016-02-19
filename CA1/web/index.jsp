@@ -15,9 +15,11 @@
     <body>
         <h1>Gruppe 3</h1>
         <br>
-        <a href="">Download client</a>
+        <a href="http://magnuslarsen.dk/Projects/ChatProject.zip">Download client</a>
+        <br>
+        <br>
         <form action="documents.jsp">
-            <input type="submit" value="Link" name="Link">
+            <input type="submit" value="Documentation">
         </form>
         
     </body>
